@@ -132,26 +132,27 @@
         </Grid>
     </Grid>
 </Window>-->
-
 <Window x:Class="WpfAppDemoCRUD.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:WpfAppDemoCRUD"
         Title="Product Crud" Height="600" Width="950">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <!-- Define columns for sidebar and content -->
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
 
-        <!-- Navigation buttons -->
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
-            <Button Content="Home" Style="{StaticResource BootstrapButton}" Click="NavigateToHomePage"/>
-            <Button Content="Product List" Style="{StaticResource BootstrapButton}" Click="NavigateToProductListPage"/>
-            <Button Content="Add Product" Style="{StaticResource BootstrapButton}" Click="NavigateToAddProductPage"/>
+        <!-- Sidebar -->
+        <StackPanel Grid.Column="0" Background="LightGray">
+            <!-- Navigation buttons -->
+            <Button Content="Home" Style="{StaticResource BootstrapButton}" Click="NavigateToHomePage" Margin="5"/>
+            <Button Content="Product List" Style="{StaticResource BootstrapButton}" Click="NavigateToProductListPage" Margin="5"/>
+            <Button Content="Add Product" Style="{StaticResource BootstrapButton}" Click="NavigateToAddProductPage" Margin="5"/>
         </StackPanel>
 
         <!-- Frame for displaying pages -->
-        <Frame Grid.Row="1" Name="MainFrame"/>
+        <Frame Grid.Column="1" Name="MainFrame"/>
     </Grid>
 </Window>
