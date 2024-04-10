@@ -150,6 +150,7 @@
             <Button Content="Home" Style="{StaticResource BootstrapButton}" Click="NavigateToHomePage" Margin="5"/>
             <Button Content="Product List" Style="{StaticResource BootstrapButton}" Click="NavigateToProductListPage" Margin="5"/>
             <Button Content="Add Product" Style="{StaticResource BootstrapButton}" Click="NavigateToAddProductPage" Margin="5"/>
+            <Button Content="Cart" Style="{StaticResource BootstrapButton}" Click="NavigateToCartDetailPage" Margin="5"/>
         </StackPanel>
 
         <!-- Frame for displaying pages -->

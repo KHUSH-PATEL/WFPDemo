@@ -48,6 +48,11 @@ namespace WpfAppDemoCRUD
         {
             MainFrame.Content = new AddProductPage(dbContext);
         }
+        private void NavigateToCartDetailPage(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new CartDetails(dbContext);
+        }
+        
         //private void GetProducts()
         //{
         //    int skip = (currentPage - 1) * pageSize;

@@ -15,21 +15,23 @@
                     </ItemsPanelTemplate>
                 </ListBox.ItemsPanel>
                 <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Border BorderBrush="Black" BorderThickness="1" Margin="5" Width="150">
-                            <StackPanel>
-                                <TextBlock Text="{Binding Name}" FontWeight="Bold" Margin="5"/>
-                                <TextBlock Text="{Binding Description}" Margin="5"/>
-                                <TextBlock Text="{Binding Price}" Margin="5"/>
-                                <TextBlock Text="{Binding Unit}" Margin="5"/>
-                                <StackPanel Orientation="Horizontal" Margin="5">
-                                    <Button Content="Edit" Click="UpdateProductForEdit" Style="{StaticResource BootstrapWarningButton}" Margin="5"/>
-                                    <Button Content="Delete" Click="DeleteProduct" Style="{StaticResource DeleteButtonStyle}" Margin="5"/>
-                                </StackPanel>
+                <DataTemplate>
+                    <Border BorderBrush="Black" BorderThickness="1" Margin="5" Width="200">
+                        <StackPanel>
+                            <TextBlock Text="{Binding Name}" FontWeight="Bold" Margin="5"/>
+                            <TextBlock Text="{Binding Description}" Margin="5"/>
+                            <TextBlock Text="{Binding Price}" Margin="5"/>
+                            <TextBlock Text="{Binding Unit}" Margin="5"/>
+                            <StackPanel Orientation="Horizontal" Margin="5">
+                                <Button Content="Edit" Click="UpdateProductForEdit" Style="{StaticResource BootstrapWarningButton}" Margin="5"/>
+                                <Button Content="Delete" Click="DeleteProduct" Style="{StaticResource DeleteButtonStyle}" Margin="5"/>
+                                <Button Content="Add to Cart" Click="AddToCart_Click" Margin="5"
+        CommandParameter="{Binding}" />
                             </StackPanel>
-                        </Border>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
             </ListBox>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
                 <Button Content="Previous Page" Click="PreviousPage_Click" Style="{StaticResource PaginationButtonPrevious}" Margin="5" />

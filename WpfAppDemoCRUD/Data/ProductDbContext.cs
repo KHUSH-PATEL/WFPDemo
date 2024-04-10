@@ -13,10 +13,12 @@ namespace WpfAppDemoCRUD.Data
         }
 
         public DbSet<Product> Products { get; set; }
+        public DbSet<Cart> Cart { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Product>().HasData(GetProducts());
+            modelBuilder.Entity<Cart>();
             base.OnModelCreating(modelBuilder);
         }
 

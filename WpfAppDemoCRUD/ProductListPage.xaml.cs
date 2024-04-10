@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -42,6 +43,7 @@ namespace WpfAppDemoCRUD
             List<Product> productAvailable = dbContext.Products.Skip(skip).Take(pageSize).ToList();
             if(products.Count > 0)
             {
+                
                 ProductDG.ItemsSource = products;
                 productsCollection = new ObservableCollection<Product>(products);
                 ProductDG.ItemsSource = productsCollection;
@@ -55,7 +57,7 @@ namespace WpfAppDemoCRUD
                 nextButton.Visibility = Visibility.Visible;
             }                     
         }
-
+       
         private void RefreshProducts()
         {
             int skip = (currentPage - 1) * pageSize;
@@ -125,6 +127,21 @@ namespace WpfAppDemoCRUD
                         mainWindow.MainFrame.Content = updateProductPage;
                     }
                 }
+            }
+        }
+        private void AddToCart_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button button && button.DataContext is Product product)
+            {
+                Cart productCart = new Cart();
+                productCart.ProductId = product.Id;
+                productCart.Name = product.Name;
+                productCart.Price = product.Price;
+                productCart.Unit = product.Unit;
+
+                dbContext.Cart.Add(productCart);
+                dbContext.SaveChanges();
+                MessageBox.Show("Product added to cart successfully.");
             }
         }
 

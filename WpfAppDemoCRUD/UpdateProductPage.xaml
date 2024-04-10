@@ -6,8 +6,9 @@
              xmlns:local="clr-namespace:WpfAppDemoCRUD"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Height="Auto" VerticalAlignment="Top">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -18,16 +19,16 @@
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0" Text="Update Product" HorizontalAlignment="Center" VerticalAlignment="Center"
-                   FontSize="24" FontWeight="Bold" Margin="0,20"/>
+                FontSize="24" FontWeight="Bold" Margin="0,20"/>
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="20">
             <Label Content="Name:" Width="100" VerticalAlignment="Center"/>
-            <TextBox x:Name="txtName" Width="300" Margin="5"/>
+            <TextBox x:Name="txtName" Width="300" Margin="5" />
         </StackPanel>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="20">
             <Label Content="Description:" Width="100" VerticalAlignment="Center"/>
-            <TextBox x:Name="txtDescription" Width="300" Margin="5"/>
+            <TextBox x:Name="txtDescription" Width="300" Margin="5" />
         </StackPanel>
 
         <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="20">
@@ -37,10 +38,16 @@
 
         <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="20">
             <Label Content="Unit:" Width="100" VerticalAlignment="Center"/>
-            <TextBox x:Name="txtUnit" Width="100" Margin="5"/>
+            <TextBox x:Name="txtUnit" Width="100" Margin="5" />
         </StackPanel>
 
-        <Button Grid.Row="5" Content="Update" HorizontalAlignment="Center" Margin="20"
-                Padding="10,5" Width="120" Style="{StaticResource BootstrapWarningButton}" Click="btnUpdate_Click"/>
+        <StackPanel Grid.Row="5" Orientation="Horizontal" Margin="20">
+            <Label Content="Image:" Width="100" VerticalAlignment="Center"/>
+            <Button Content="Select Image" Click="SelectImage_Click" Margin="2" Height="20"/>
+            <Image x:Name="imgPreview" Width="100" Margin="5"/>
+        </StackPanel>
+
+        <Button Grid.Row="6" Content="Update" HorizontalAlignment="Center" Margin="0,0,0,40"
+             Padding="10,5" Width="120" Style="{StaticResource BootstrapWarningButton}" Click="btnUpdate_Click"/>
     </Grid>
 </UserControl>
