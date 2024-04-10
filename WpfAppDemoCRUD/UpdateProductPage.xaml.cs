@@ -161,12 +161,11 @@ namespace WpfAppDemoCRUD
                 }
                 else
                 {
-                  
                     product.Name = txtName.Text;
                     product.Description = txtDescription.Text;
                     product.Price = Convert.ToDouble(price);
                     product.Unit = Convert.ToInt32(txtUnit.Text);
-                    product.Image = ConvertImageToByteArray(imgPreview.Source as BitmapImage);
+                    //product.Image = ConvertImageToByteArray(imgPreview.Source as BitmapImage);
 
                     dbContext.SaveChanges();
 
