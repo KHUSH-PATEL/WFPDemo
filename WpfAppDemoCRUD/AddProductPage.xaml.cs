@@ -26,7 +26,7 @@ namespace WpfAppDemoCRUD
             this.dbContext = dbContext;
             InitializeComponent();
         }
-
+     
         private void AddProduct(object s, RoutedEventArgs e)
         {
             double.TryParse(txtPrice.Text, out double price);
