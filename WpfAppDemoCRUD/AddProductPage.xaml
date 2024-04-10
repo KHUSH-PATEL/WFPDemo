@@ -5,8 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Height="500" VerticalAlignment="Top">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -39,7 +40,14 @@
             <TextBox x:Name="txtUnit" Width="100" Margin="5" Text="{Binding Unit, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
         </StackPanel>
 
-        <Button Grid.Row="5" Content="Add" HorizontalAlignment="Center" Margin="20"
+        <StackPanel Grid.Row="5" Orientation="Horizontal" Margin="20">
+            <Label Content="Image:" Width="100" VerticalAlignment="Center"/>
+            <Button Content="Select Image" Click="SelectImage_Click" Margin="2" Height="20"/>
+            <Image x:Name="imgPreview" Width="100" Margin="5"/>
+        </StackPanel>
+        
+
+        <Button Grid.Row="6" Content="Add" HorizontalAlignment="Center" Margin="0,0,0,40"
              Padding="10,5" Width="120" Style="{StaticResource BootstrapPrimaryButton}" Click="AddProduct"/>
     </Grid>
 </UserControl>
