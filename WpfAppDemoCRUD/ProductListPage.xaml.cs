@@ -74,6 +74,7 @@ namespace WpfAppDemoCRUD
         private void NextPage_Click(object sender, RoutedEventArgs e)
         {
             currentPage++;
+
             RefreshProducts();
         }
 
