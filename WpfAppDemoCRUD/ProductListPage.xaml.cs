@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -25,6 +26,7 @@ namespace WpfAppDemoCRUD
         ProductDbContext dbContext;
         private readonly int pageSize = 10; // Number of items per page
         private int currentPage = 1; // Current page index
+        private ObservableCollection<Product> productsCollection;
         public ProductListPage(ProductDbContext dbContext)
         {
             this.dbContext = dbContext;
@@ -36,13 +38,27 @@ namespace WpfAppDemoCRUD
         {
             int skip = (currentPage - 1) * pageSize;
             List<Product> products = dbContext.Products.Skip(skip).Take(pageSize).ToList();
-            ProductDG.ItemsSource = products;
+            productsCollection = new ObservableCollection<Product>(products);
+            ProductDG.ItemsSource = productsCollection;
+        }
+
+        private void RefreshProducts()
+        {
+            int skip = (currentPage - 1) * pageSize;
+            List<Product> products = dbContext.Products.Skip(skip).Take(pageSize).ToList();
+
+            // Update the existing ObservableCollection with new data
+            productsCollection.Clear(); // Clear existing items
+            foreach (var product in products)
+            {
+                productsCollection.Add(product); // Add updated items
+            }
         }
 
         private void NextPage_Click(object sender, RoutedEventArgs e)
         {
             currentPage++;
-            GetProducts();
+            RefreshProducts();
         }
 
         private void PreviousPage_Click(object sender, RoutedEventArgs e)
@@ -50,18 +66,25 @@ namespace WpfAppDemoCRUD
             if (currentPage > 1)
             {
                 currentPage--;
-                GetProducts();
+                RefreshProducts();
             }
         }
         private void DeleteProduct(object s, RoutedEventArgs e)
         {
             var productToBeDeleted = (s as FrameworkElement).DataContext as Product;
-            dbContext.Products.Remove(productToBeDeleted);
-            dbContext.SaveChanges();
-            MessageBox.Show("Product Deleted Successfully.");
-            GetProducts();
+
+            if (productToBeDeleted != null)
+            {
+                dbContext.Products.Remove(productToBeDeleted);
+                dbContext.SaveChanges();
+
+                // Remove the deleted product from the collection
+                productsCollection.Remove(productToBeDeleted);
+
+                MessageBox.Show("Product Deleted Successfully.");
+            }
+            //RefreshProducts();
         }
-        Product selectedProduct = new Product();
         private void UpdateProductForEdit(object s, RoutedEventArgs e)
         {
             if (s is FrameworkElement element && element.DataContext is Product product)

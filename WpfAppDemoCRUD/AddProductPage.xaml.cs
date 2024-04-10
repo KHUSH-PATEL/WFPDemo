@@ -44,7 +44,7 @@ namespace WpfAppDemoCRUD
             dbContext.SaveChanges();
 
             // Optionally notify the user that the product has been updated
-            MessageBox.Show("Product updated successfully.");
+            MessageBox.Show("Product Added successfully.");
 
             if (Application.Current.MainWindow is MainWindow mainWindow)
             {
