@@ -23,7 +23,7 @@ namespace WpfAppDemoCRUD
             ServiceCollection services = new ServiceCollection();
             services.AddDbContext<ProductDbContext>(options =>
             {   
-                options.UseSqlServer("Server=SF-CPU-332\\SQLEXPRESS;Database=WFPDemo;Integrated Security=True;");
+                options.UseSqlServer("Data Source=SF-CPU-583\\SQLEXPRESS;Initial Catalog=WPFDemo;Integrated Security=True;TrustServerCertificate=True");
             });
 
             services.AddSingleton<MainWindow>();

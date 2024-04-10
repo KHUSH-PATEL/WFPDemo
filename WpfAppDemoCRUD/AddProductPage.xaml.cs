@@ -29,29 +29,43 @@ namespace WpfAppDemoCRUD
 
         private void AddProduct(object s, RoutedEventArgs e)
         {
-            product.Name = txtName.Text;
-            product.Description = txtDescription.Text;
-
-            // Handle price parsing
-            if (double.TryParse(txtPrice.Text, out double price))
-            {
-                product.Price = price;
+            double.TryParse(txtPrice.Text, out double price);
+            int.TryParse(txtUnit.Text, out int productUnit);
+            if (string.IsNullOrEmpty(txtName.Text)) {
+                MessageBox.Show("Please enter product name.");
+            } else if (string.IsNullOrEmpty(txtDescription.Text)) {
+                MessageBox.Show("Please enter product description.");
             }
+            else if (txtPrice.Text == null || price <= 0)
+            {
+                MessageBox.Show("Product price shoud be  greater than zero.");
+            } else if (txtUnit.Text == null || productUnit <= 0)
+            {
+                MessageBox.Show("Product unit shoud be greater than zero.");
+            }
+            else
+            {
+                product.Name = txtName.Text;
+                product.Description = txtDescription.Text;
 
-            product.Unit = Convert.ToInt32(txtUnit.Text);
-            dbContext.Products.Add(product);
-            // Save changes to database
-            dbContext.SaveChanges();
+                product.Price = price;
+
+                product.Unit = Convert.ToInt32(txtUnit.Text);
+                dbContext.Products.Add(product);
+                // Save changes to database
+                dbContext.SaveChanges();
 
             // Optionally notify the user that the product has been updated
             MessageBox.Show("Product Added successfully.");
 
-            if (Application.Current.MainWindow is MainWindow mainWindow)
-            {
-                if (mainWindow.MainFrame != null)
+                if (Application.Current.MainWindow is MainWindow mainWindow)
                 {
-                    mainWindow.MainFrame.Content = new ProductListPage(dbContext);
+                    if (mainWindow.MainFrame != null)
+                    {
+                        mainWindow.MainFrame.Content = new ProductListPage(dbContext);
+                    }
                 }
+
             }
         }
     }

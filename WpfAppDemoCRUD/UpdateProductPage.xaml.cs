@@ -42,30 +42,46 @@ namespace WpfAppDemoCRUD
         {
             if (product != null)
             {
-                //// Update the product properties from text boxes
-                product.Name = txtName.Text;
-                product.Description = txtDescription.Text;
-
-                // Handle price parsing
-                if (decimal.TryParse(txtPrice.Text, out decimal price))
+                double.TryParse(txtPrice.Text, out double price);
+                int.TryParse(txtUnit.Text, out int productUnit);
+                if (string.IsNullOrEmpty(txtName.Text))
                 {
-                    product.Price = Convert.ToDouble(price);
+                    MessageBox.Show("Please enter product name.");
                 }
-
-                product.Unit = Convert.ToInt32(txtUnit.Text);
-                // Save changes to database
-                dbContext.SaveChanges();
-
-                // Optionally notify the user that the product has been updated
-                MessageBox.Show("Product updated successfully.");
-
-                if (Application.Current.MainWindow is MainWindow mainWindow)
+                else if (string.IsNullOrEmpty(txtDescription.Text))
                 {
-                    if (mainWindow.MainFrame != null)
+                    MessageBox.Show("Please enter product description.");
+                }
+                else if (txtPrice.Text == null || price <= 0)
+                {
+                    MessageBox.Show("Product price shoud be  greater than zero.");
+                }
+                else if (txtUnit.Text == null || productUnit <= 0)
+                {
+                    MessageBox.Show("Product unit shoud be greater than zero.");
+                }
+                else
+                {
+                  
+                    product.Name = txtName.Text;
+                    product.Description = txtDescription.Text;
+                    product.Price = Convert.ToDouble(price);
+                    product.Unit = Convert.ToInt32(txtUnit.Text);
+            
+                    dbContext.SaveChanges();
+
+                   
+                    MessageBox.Show("Product updated successfully.");
+
+                    if (Application.Current.MainWindow is MainWindow mainWindow)
                     {
-                        mainWindow.MainFrame.Content = new ProductListPage(dbContext);
+                        if (mainWindow.MainFrame != null)
+                        {
+                            mainWindow.MainFrame.Content = new ProductListPage(dbContext);
+                        }
                     }
                 }
+               
             }
         }
 

@@ -34,8 +34,8 @@
         </DataGrid>
         <Grid Grid.Row="1">
             <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
-                <Button Content="Previous Page" Click="PreviousPage_Click" Margin="5"/>
-                <Button Content="Next Page" Click="NextPage_Click" Margin="5"/>
+                <Button Content="Previous Page" Click="PreviousPage_Click" Margin="5" />
+                <Button Content="Next Page" Click="NextPage_Click" Margin="5" Name="nextButton"/>
             </StackPanel>
         </Grid>
     </Grid>

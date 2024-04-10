@@ -38,6 +38,22 @@ namespace WpfAppDemoCRUD
         {
             int skip = (currentPage - 1) * pageSize;
             List<Product> products = dbContext.Products.Skip(skip).Take(pageSize).ToList();
+            skip= ((currentPage+1) - 1) * pageSize;
+            List<Product> productAvailable = dbContext.Products.Skip(skip).Take(pageSize).ToList();
+            if(products.Count > 0)
+            {
+                ProductDG.ItemsSource = products;
+               
+            }
+            if (productAvailable.Count <= 0)
+            {
+                nextButton.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                nextButton.Visibility = Visibility.Visible;
+            }
+          
             productsCollection = new ObservableCollection<Product>(products);
             ProductDG.ItemsSource = productsCollection;
         }
