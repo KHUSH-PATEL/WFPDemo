@@ -21,6 +21,7 @@ namespace WpfAppDemoCRUD
     /// </summary>
     public partial class UpdateProductPage : UserControl
     {
+
         ProductDbContext dbContext;
         private Product product;
         public UpdateProductPage(ProductDbContext dbContext, Product product)
