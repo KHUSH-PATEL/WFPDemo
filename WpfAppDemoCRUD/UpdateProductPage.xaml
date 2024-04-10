@@ -41,6 +41,6 @@
         </StackPanel>
 
         <Button Grid.Row="5" Content="Update" HorizontalAlignment="Center" Margin="20"
-                Padding="10,5" Width="120" Click="btnUpdate_Click"/>
+                Padding="10,5" Width="120" Style="{StaticResource BootstrapWarningButton}" Click="btnUpdate_Click"/>
     </Grid>
 </UserControl>

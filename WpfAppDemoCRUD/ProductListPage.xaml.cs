@@ -43,7 +43,8 @@ namespace WpfAppDemoCRUD
             if(products.Count > 0)
             {
                 ProductDG.ItemsSource = products;
-               
+                productsCollection = new ObservableCollection<Product>(products);
+                ProductDG.ItemsSource = productsCollection;
             }
             if (productAvailable.Count <= 0)
             {
@@ -52,10 +53,7 @@ namespace WpfAppDemoCRUD
             else
             {
                 nextButton.Visibility = Visibility.Visible;
-            }
-          
-            productsCollection = new ObservableCollection<Product>(products);
-            ProductDG.ItemsSource = productsCollection;
+            }                     
         }
 
         private void RefreshProducts()
@@ -68,6 +66,16 @@ namespace WpfAppDemoCRUD
             foreach (var product in products)
             {
                 productsCollection.Add(product); // Add updated items
+            }
+            skip = ((currentPage + 1) - 1) * pageSize;
+            List<Product> productAvailable = dbContext.Products.Skip(skip).Take(pageSize).ToList();
+            if (productAvailable.Count <= 0)
+            {
+                nextButton.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                nextButton.Visibility = Visibility.Visible;
             }
         }
 

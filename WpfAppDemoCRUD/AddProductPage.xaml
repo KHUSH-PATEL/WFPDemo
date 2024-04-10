@@ -40,6 +40,6 @@
         </StackPanel>
 
         <Button Grid.Row="5" Content="Add" HorizontalAlignment="Center" Margin="20"
-             Padding="10,5" Width="120" Click="AddProduct"/>
+             Padding="10,5" Width="120" Style="{StaticResource BootstrapPrimaryButton}" Click="AddProduct"/>
     </Grid>
 </UserControl>

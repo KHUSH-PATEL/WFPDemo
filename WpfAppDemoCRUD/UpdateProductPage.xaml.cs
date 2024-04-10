@@ -55,11 +55,11 @@ namespace WpfAppDemoCRUD
                 }
                 else if (txtPrice.Text == null || price <= 0)
                 {
-                    MessageBox.Show("Product price shoud be  greater than zero.");
+                    MessageBox.Show("Product price should be  greater than zero.");
                 }
                 else if (txtUnit.Text == null || productUnit <= 0)
                 {
-                    MessageBox.Show("Product unit shoud be greater than zero.");
+                    MessageBox.Show("Product unit should be greater than zero.");
                 }
                 else
                 {

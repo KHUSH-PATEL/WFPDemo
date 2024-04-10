@@ -146,9 +146,9 @@
 
         <!-- Navigation buttons -->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
-            <Button Content="Home" Click="NavigateToHomePage"/>
-            <Button Content="Product List" Click="NavigateToProductListPage"/>
-            <Button Content="Add Product" Click="NavigateToAddProductPage"/>
+            <Button Content="Home" Style="{StaticResource BootstrapButton}" Click="NavigateToHomePage"/>
+            <Button Content="Product List" Style="{StaticResource BootstrapButton}" Click="NavigateToProductListPage"/>
+            <Button Content="Add Product" Style="{StaticResource BootstrapButton}" Click="NavigateToAddProductPage"/>
         </StackPanel>
 
         <!-- Frame for displaying pages -->
